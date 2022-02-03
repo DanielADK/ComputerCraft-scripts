@@ -186,7 +186,10 @@ function printStatus(lenght, width, height, v, s)
 	local act = v*width+s
 	local total = height*width
 	local pomer = act/total
-	print("height:"..v.." / "..height.." ["..(math.floor((pomer*100) * 100) / 100).."%]")
+	-- send status to ID
+	string = "Height: "..v.."/"..height.." ["..(math.floor((pomer*100) * 100) / 100).."%]"
+	rednet.send(6, string)
+	print(string)
 end
 function calcFuelConsupmtion(lenght, width, height)
 	return (lenght*width*height)+(height*width)*2
@@ -212,7 +215,7 @@ if args[4] == nil then
 else
 	startHeight = tonumber(args[4])
 end
-
+rednet.open("right")
 selectSlot(1)
 
 fuelRefill()
