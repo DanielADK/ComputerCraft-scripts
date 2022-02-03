@@ -8,6 +8,7 @@
 function selectSlot(slot)
 	if actualslot ~= slot then
 		turtle.select(slot)
+		actualslot = slot
 	end
 end
 function checkFuelAndRefill()
@@ -182,7 +183,7 @@ end
 function printStatus(lenght, width, height, v, s)
 	term.clear()
 	term.setCursorPos(2,2)
-	local act = (height-1)*width+s
+	local act = v*width+s
 	local total = height*width
 	local pomer = act/total
 	print("height:"..v.." / "..height.." ["..(math.floor((pomer*100) * 100) / 100).."%]")
@@ -192,8 +193,8 @@ function calcFuelConsupmtion(lenght, width, height)
 end
 
 args = { ... }
-if not (#args == 3) then
-  print('Pouziti: kopej <lenght> <width> <height>')
+if not (#args == 4) then
+  print('Pouziti: kopej <lenght> <width> <height> <height-skip>')
   return
 elseif not (tonumber(args[2]) % 2 == 0) then
   print('width musi byt sude cislo kvuli uspore paliva v navratove fazi.')
@@ -205,6 +206,13 @@ consumption = 0
 lenght = tonumber(args[1])
 width = tonumber(args[2])
 height = tonumber(args[3])
+
+if args[4] == nil then
+	startHeight = 0
+else
+	startHeight = tonumber(args[4])
+end
+
 selectSlot(1)
 
 fuelRefill()
@@ -213,7 +221,7 @@ if calcFuelConsupmtion(lenght, width, height) > turtle.getFuelLevel() then
 	return
 end
 
-for v=0,height do
+for v=startHeight,height do
 	if v ~= 0 then
 		for av=0,(3*v) do
 			moveDown()
