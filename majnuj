@@ -205,7 +205,7 @@ consumption = 0
 lenght = tonumber(args[1])
 width = tonumber(args[2])
 height = tonumber(args[3])
-actualSlot
+selectSlot(1)
 
 fuelRefill()
 if calcFuelConsupmtion(lenght, width, height) > turtle.getFuelLevel() then
