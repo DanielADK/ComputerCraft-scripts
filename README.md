@@ -5,21 +5,9 @@ Script for computercraft - turtles/computers
 [Majnuj](https://github.com/DanielADK/ComputerCraft-scripts/blob/main/majnuj)
 - Mining script like quarry. Command: __kopej \<length> \<width> \<height> [height_skip]__ 
 
-## Vertival mining pattern: 
-- Empty = mined
-- B = block
-- |, +, - = borders
+## Vertical mining pattern: 
 
-y--------------+
-|              |  y = 20
-|BBBBBB  BBB BB|  y = 19
-|B BBBB BBBBB B|  y = 18
-|              |  y = 17
-|BBBBBBB B  BBB|  y = 16
-|BBBBBBBBBB BBB|  y = 15
-|              |  y = 14
-|BBBBBBBBBBBBBB|  y = 13
-+--------------x
+![pattern](/mining-pattern.png)
 
 ## Horizontal mining pattern: rectangle
 
